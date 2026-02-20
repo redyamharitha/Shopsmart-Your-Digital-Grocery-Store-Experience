@@ -1,0 +1,83 @@
+<!-- shopsmart-frontend/src/app/app.component.html -->
+
+<header class="app-header">
+  <a routerLink="/" class="logo">{{ title }}</a>
+
+  <div class="right-aligned-nav">
+    <ul class="header-nav-links">
+      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
+      <!-- --- NEW ADMIN LINK (Add Product) --- -->
+      <li *ngIf="isAdmin$ | async">
+        <a routerLink="/admin/add-product" routerLinkActive="active">Add Product</a>
+      </li>
+      <!-- --- END NEW ADMIN LINK --- -->
+      <!-- If you decide to add a direct link to a cart page, uncomment below -->
+      <!-- <li><a routerLink="/cart" routerLinkActive="active">Cart</a></li> -->
+    </ul>
+
+    <!-- User Account Menu / Login/Register Buttons -->
+    <ng-container *ngIf="(isLoggedIn$ | async); else authButtons">
+      <button mat-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>person</mat-icon>
+        My Account
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item routerLink="/my-orders">
+          <mat-icon>receipt</mat-icon>
+          My Orders
+        </button>
+        <button mat-menu-item (click)="onLogout()">
+          <mat-icon>logout</mat-icon>
+          Logout
+        </button>
+      </mat-menu>
+    </ng-container>
+
+    <ng-template #authButtons>
+      <!-- Original User Login/Register Buttons -->
+      <button mat-button routerLink="/login" routerLinkActive="active">Login</button>
+      <button mat-button routerLink="/register" routerLinkActive="active">Register</button>
+
+      <!-- --- NEW ADMIN LOGIN/REGISTER MENU --- -->
+      <button mat-button [matMenuTriggerFor]="adminAuthMenu">
+        <mat-icon>security</mat-icon> <!-- Or a different icon for admin -->
+        Admin
+      </button>
+      <mat-menu #adminAuthMenu="matMenu">
+        <button mat-menu-item routerLink="/admin-login">
+          <mat-icon>login</mat-icon>
+          Admin Login
+        </button>
+        <button mat-menu-item routerLink="/admin-register">
+          <mat-icon>person_add</mat-icon>
+          Admin Register
+        </button>
+      </mat-menu>
+      <!-- --- END NEW ADMIN LOGIN/REGISTER MENU --- -->
+    </ng-template>
+
+    <!-- Cart Icon that opens the custom sidebar - MOVED TO LAST -->
+    <div class="cart-icon" (click)="toggleCart()">
+      <!-- Using Material Icon font for shopping cart -->
+      <mat-icon [matBadge]="(cartItemCount$ | async) || 0" matBadgeColor="warn" [matBadgeHidden]="(cartItemCount$ | async) === 0">shopping_cart</mat-icon>
+      <!-- If you previously had text like "Cart" next to the icon, you can add it back here: -->
+      <!-- <span class="cart-text">Cart</span> -->
+    </div>
+
+  </div>
+</header>
+
+<main class="app-content">
+  <router-outlet></router-outlet>
+</main>
+
+<div class="cart-sidebar" [class.open]="isCartOpen">
+  <div class="sidebar-header">
+    <h3>Your Cart</h3>
+    <button class="close-sidebar-button" (click)="toggleCart()">X</button>
+  </div>
+  <app-cart></app-cart>
+</div>
+
+<div class="sidebar-overlay" [class.show]="isCartOpen" (click)="toggleCart()"></div>

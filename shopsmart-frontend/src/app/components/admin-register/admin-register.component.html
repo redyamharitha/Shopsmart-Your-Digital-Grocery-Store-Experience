@@ -1,0 +1,55 @@
+<!-- shopsmart-frontend/src/app/components/admin-register/admin-register.component.html -->
+
+<div class="register-container">
+  <div class="register-card">
+    <h2>Admin Registration</h2>
+    <form [formGroup]="adminRegisterForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" type="text" formControlName="name" placeholder="Enter your name">
+        <div *ngIf="adminRegisterForm.get('name')?.invalid && (adminRegisterForm.get('name')?.dirty || adminRegisterForm.get('name')?.touched)" class="error-message">
+          <div *ngIf="adminRegisterForm.get('name')?.errors?.['required']">Name is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" placeholder="Enter your email">
+        <div *ngIf="adminRegisterForm.get('email')?.invalid && (adminRegisterForm.get('email')?.dirty || adminRegisterForm.get('email')?.touched)" class="error-message">
+          <div *ngIf="adminRegisterForm.get('email')?.errors?.['required']">Email is required.</div>
+          <div *ngIf="adminRegisterForm.get('email')?.errors?.['email']">Please enter a valid email.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" placeholder="Enter your password">
+        <div *ngIf="adminRegisterForm.get('password')?.invalid && (adminRegisterForm.get('password')?.dirty || adminRegisterForm.get('password')?.touched)" class="error-message">
+          <div *ngIf="adminRegisterForm.get('password')?.errors?.['required']">Password is required.</div>
+          <div *ngIf="adminRegisterForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="adminSecretKey">Admin Secret Key</label>
+        <input id="adminSecretKey" type="password" formControlName="adminSecretKey" placeholder="Enter the admin secret key">
+        <div *ngIf="adminRegisterForm.get('adminSecretKey')?.invalid && (adminRegisterForm.get('adminSecretKey')?.dirty || adminRegisterForm.get('adminSecretKey')?.touched)" class="error-message">
+          <div *ngIf="adminRegisterForm.get('adminSecretKey')?.errors?.['required']">Admin Secret Key is required.</div>
+        </div>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+      <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+
+      <button type="submit" [disabled]="adminRegisterForm.invalid || isLoading">
+        {{ isLoading ? 'Registering...' : 'Register as Admin' }}
+      </button>
+    </form>
+    <p class="register-links">
+      Already have an account? <a routerLink="/admin-login">Login as Admin</a>
+    </p>
+    <p class="register-links">
+      Not an admin? <a routerLink="/register">Register as User</a>
+    </p>
+  </div>
+</div>

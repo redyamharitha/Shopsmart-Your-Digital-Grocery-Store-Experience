@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+// Import Material Design typography and theme if not already imported by ng add
+// @use '@angular/material' as mat;
+// @include mat.all-component-themes(); // Or your specific theme
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  // Make sure your root font is defined
+}
+
+// Styles for the sidenav container to take full height
+.sidenav-container {
+  height: calc(100vh - 64px); /* Assuming 64px for toolbar height, adjust if different */
+  width: 100%;
+}
+
+// Styles for the actual sidenav (the cart panel)
+.cart-sidenav {
+  width: 300px; /* Adjust width as needed for your cart */
+  padding: 20px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24); /* Add some shadow for depth */
+}
+
+// Styles for the main content that moves when sidenav opens
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure content takes full height */
+}
+
+// Adjust main content area padding for router-outlet
+.main-content-area {
+  flex: 1; /* Allows it to grow and fill available space */
+  padding: 20px; /* Example padding, adjust as needed for your page content */
+  box-sizing: border-box; /* Include padding in element's total width and height */
+  overflow: auto; /* Enable scrolling if content overflows */
+}
+
+// Basic styles for products.component to ensure layout consistency
+// These are examples, you might need to adjust them based on your products.component.scss
+app-products {
+  display: block; /* Ensure the component behaves as a block element */
+  margin: 0 auto;
+  max-width: 1200px; /* Example max width */
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes button to bottom */
+  align-items: center;
+}
+
+.product-card img {
+  max-width: 100%;
+  height: 150px; /* Fixed height for consistency */
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.product-card button {
+  margin-top: 15px;
+  width: 100%;
+}

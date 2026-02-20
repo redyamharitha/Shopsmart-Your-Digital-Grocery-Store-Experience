@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@angular/animations": "^20.0.4",
+    "@angular/build": "^20.0.3",
+    "@angular/cdk": "^20.0.3",
+    "@angular/forms": "^20.0.0 || ^21.0.0",
+    "@angular/material": "^20.0.3",
+    "@angular/router": "^20.0.4",
+    "zone.js": "^0.15.1"
+  }
+}

@@ -1,0 +1,181 @@
+/* shopsmart-frontend/src/app/app.component.scss */
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // Ensure app takes full height
+  font-family: 'Arial', sans-serif; // Example font
+  background-color: #f4f4f4; // Light background
+}
+
+.app-header {
+  background-color: #333;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure header is on top */
+}
+
+.logo {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-right: 20px; /* Optional: add some space between logo and the nav block */
+}
+
+.right-aligned-nav { /* NEW CONTAINER STYLES */
+  display: flex; // Make this a flex container
+  align-items: center;
+  gap: 20px; /* Space between nav links and cart icon */
+  margin-left: auto; /* Pushes this entire block to the far right */
+}
+
+.header-nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.header-nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+  padding: 5px 0;
+  transition: color 0.2s ease;
+  &:hover {
+    color: #f0f0f0;
+  }
+  &.active {
+    border-bottom: 2px solid white;
+  }
+}
+
+.cart-icon {
+  font-size: 1.8em;
+  cursor: pointer;
+  position: relative;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px; // Space between icon and text if any
+  // Ensure mat-icon (shopping_cart) is styled correctly, if used
+  .mat-icon {
+    font-size: 1.2em; // Adjust icon size relative to parent
+    height: 1.2em;
+    width: 1.2em;
+    vertical-align: middle;
+  }
+}
+
+.cart-count {
+  background-color: #007bff;
+  color: white;
+  font-size: 0.7em;
+  border-radius: 50%;
+  padding: 4px 8px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 20px;
+  text-align: center;
+  line-height: 1;
+}
+
+.app-content {
+  flex-grow: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Sliding Cart Sidebar Styles */
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px; /* Hidden off-screen by default */
+  width: 400px;
+  height: 100%;
+  background-color: white;
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease-in-out;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.cart-sidebar.open {
+  right: 0; /* Slides into view */
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.close-sidebar-button {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+  &:hover {
+    color: #333;
+  }
+}
+
+/* Overlay Styles */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.sidebar-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Basic media query for smaller screens */
+@media (max-width: 768px) {
+  .right-aligned-nav {
+    gap: 10px; /* Reduce gap on smaller screens */
+  }
+  .header-nav-links {
+    display: none; /* Hide nav links on very small screens, consider a hamburger menu */
+  }
+  .cart-sidebar {
+    width: 100%; /* Take full width on small screens */
+    right: -100%; /* Hide fully off-screen */
+  }
+  .cart-sidebar.open {
+    right: 0;
+  }
+}

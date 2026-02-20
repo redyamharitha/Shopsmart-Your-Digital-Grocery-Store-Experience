@@ -1,0 +1,80 @@
+<!-- shopsmart-frontend/src/app/components/admin/add-product/add-product.component.html -->
+
+<div class="add-product-container">
+  <h2>Add New Product</h2>
+
+  <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Product Name</label>
+      <input id="name" type="text" formControlName="name" placeholder="Enter product name">
+      <div *ngIf="addProductForm.get('name')?.invalid && (addProductForm.get('name')?.dirty || addProductForm.get('name')?.touched)" class="error-message">
+        <div *ngIf="addProductForm.get('name')?.errors?.['required']">Product Name is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description" rows="3" placeholder="Enter product description"></textarea>
+      <div *ngIf="addProductForm.get('description')?.invalid && (addProductForm.get('description')?.dirty || addProductForm.get('description')?.touched)" class="error-message">
+        <div *ngIf="addProductForm.get('description')?.errors?.['required']">Description is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input id="price" type="number" formControlName="price" placeholder="Enter price">
+      <div *ngIf="addProductForm.get('price')?.invalid && (addProductForm.get('price')?.dirty || addProductForm.get('price')?.touched)" class="error-message">
+        <div *ngIf="addProductForm.get('price')?.errors?.['required']">Price is required.</div>
+        <div *ngIf="addProductForm.get('price')?.errors?.['min']">Price must be greater than 0.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="imageUrl">Image URL</label>
+      <input id="imageUrl" type="text" formControlName="imageUrl" placeholder="Enter image URL">
+      <div *ngIf="addProductForm.get('imageUrl')?.invalid && (addProductForm.get('imageUrl')?.dirty || addProductForm.get('imageUrl')?.touched)" class="error-message">
+        <div *ngIf="addProductForm.get('imageUrl')?.errors?.['required']">Image URL is required.</div>
+        <div *ngIf="addProductForm.get('imageUrl')?.errors?.['pattern']">Please enter a valid URL.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" formControlName="category">
+        <option value="" disabled selected>Select a category</option>
+        <option *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+      </select>
+      <div *ngIf="addProductForm.get('category')?.invalid && (addProductForm.get('category')?.dirty || addProductForm.get('category')?.touched)" class="error-message">
+        <div *ngIf="addProductForm.get('category')?.errors?.['required']">Category is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="stock">Stock</label>
+      <input id="stock" type="number" formControlName="stock" placeholder="Enter stock quantity">
+      <div *ngIf="addProductForm.get('stock')?.invalid && (addProductForm.get('stock')?.dirty || addProductForm.get('stock')?.touched)" class="error-message">
+        <div *ngIf="addProductForm.get('stock')?.errors?.['required']">Stock is required.</div>
+        <div *ngIf="addProductForm.get('stock')?.errors?.['min']">Stock cannot be negative.</div>
+      </div>
+    </div>
+
+    <!-- Optional: Add a rating input if your backend supports it -->
+    <!--
+    <div class="form-group">
+      <label for="rating">Rating (0-5)</label>
+      <input id="rating" type="number" formControlName="rating" min="0" max="5" placeholder="Enter rating (optional)">
+      <div *ngIf="addProductForm.get('rating')?.invalid && (addProductForm.get('rating')?.dirty || addProductForm.get('rating')?.touched)" class="error-message">
+        <div *ngIf="addProductForm.get('rating')?.errors?.['min']">Rating must be between 0 and 5.</div>
+        <div *ngIf="addProductForm.get('rating')?.errors?.['max']">Rating must be between 0 and 5.</div>
+      </div>
+    </div>
+    -->
+
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+
+    <button type="submit" [disabled]="addProductForm.invalid || isLoading">
+      {{ isLoading ? 'Adding Product...' : 'Add Product' }}
+    </button>
+  </form>
+</div>

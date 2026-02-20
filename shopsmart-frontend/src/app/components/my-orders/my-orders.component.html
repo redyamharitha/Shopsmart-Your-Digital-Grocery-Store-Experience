@@ -1,0 +1,36 @@
+<div class="my-orders-container">
+  <h2>My Orders</h2>
+
+  <ng-container *ngIf="(orders$ | async) as orders">
+    <div *ngIf="orders.length === 0; else ordersList" class="no-orders-message">
+      <p>You have no orders yet.</p>
+      <button class="btn btn-primary" (click)="goToProducts()">Start Shopping</button>
+    </div>
+
+    <ng-template #ordersList>
+      <div class="orders-grid">
+        <div *ngFor="let order of orders" class="order-card">
+          <!-- CRITICAL CHANGE HERE: Use order._id for display -->
+          <h3>Order ID: {{ order._id }}</h3>
+          <p>Date: {{ order.date | date:'medium' }}</p>
+          <!-- Assuming your Order model has 'totalAmount' and 'orderStatus' properties -->
+          <p>Total: {{ order.totalAmount | currency:'INR':'symbol':'1.2-2' }}</p>
+          <p>Status: <span [class]="'status-' + (order.orderStatus | lowercase)">{{ order.orderStatus | titlecase }}</span></p>
+
+          <div class="order-items">
+            <h4>Items:</h4>
+            <ul>
+              <li *ngFor="let item of order.items">
+                <!-- Ensure item.product has name, price; item has quantity -->
+                {{ item.product.name }} ({{ item.quantity }}x) - {{ item.priceAtPurchase | currency:'INR':'symbol':'1.2-2' }} each
+              </li>
+            </ul>
+          </div>
+
+          <!-- CRITICAL CHANGE HERE: Pass order._id to the cancelOrder function -->
+          <button *ngIf="order.orderStatus !== 'cancelled'" class="btn btn-danger" (click)="cancelOrder(order._id)">Cancel Order</button>
+        </div>
+      </div>
+    </ng-template>
+  </ng-container>
+</div>

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Admin User",
+    "email": "admin@example.com",
+    "password": "$2a$10$oX3aB3p.g2Rz5Q8L1Y3d4O0u7F8I9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6",
+    "role": "admin"
+  },
+  {
+    "name": "Test User",
+    "email": "test@example.com",
+    "password": "$2a$10$oX3aB3p.g2Rz5Q8L1Y3d4O0u7F8I9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X4Y5Z6",
+    "role": "user"
+  }
+]

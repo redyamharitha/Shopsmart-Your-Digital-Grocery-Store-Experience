@@ -1,0 +1,26 @@
+.footer {
+  background-color: #222;
+  color: #bbb;
+  padding: 1rem 2rem;
+  text-align: center;
+  margin-top: auto; /* Pushes footer to the bottom */
+
+  p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .footer-links {
+    a {
+      color: #bbb;
+      text-decoration: none;
+      margin: 0 0.8rem;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #4CAF50;
+      }
+    }
+  }
+}

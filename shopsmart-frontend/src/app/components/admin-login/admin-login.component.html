@@ -1,0 +1,34 @@
+<!-- shopsmart-frontend/src/app/components/admin-login/admin-login.component.html -->
+
+<div class="login-container">
+  <div class="login-card">
+    <h2>Admin Login</h2>
+    <form [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" placeholder="Enter your email">
+        <div *ngIf="adminLoginForm.get('email')?.invalid && (adminLoginForm.get('email')?.dirty || adminLoginForm.get('email')?.touched)" class="error-message">
+          <div *ngIf="adminLoginForm.get('email')?.errors?.['required']">Email is required.</div>
+          <div *ngIf="adminLoginForm.get('email')?.errors?.['email']">Please enter a valid email.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" placeholder="Enter your password">
+        <div *ngIf="adminLoginForm.get('password')?.invalid && (adminLoginForm.get('password')?.dirty || adminLoginForm.get('password')?.touched)" class="error-message">
+          <div *ngIf="adminLoginForm.get('password')?.errors?.['required']">Password is required.</div>
+        </div>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+      <button type="submit" [disabled]="adminLoginForm.invalid || isLoading">
+        {{ isLoading ? 'Logging in...' : 'Login as Admin' }}
+      </button>
+    </form>
+    <p class="login-links">
+      <a routerLink="/login">Are you a regular user? Login here.</a>
+    </p>
+  </div>
+</div>

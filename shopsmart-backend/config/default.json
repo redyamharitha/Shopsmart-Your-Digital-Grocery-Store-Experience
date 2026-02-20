@@ -1,0 +1,7 @@
+{
+  "mongoURI": "mongodb://localhost:27017/shopsmart",
+  "jwtSecret": "mysecrettoken",
+  "stripeSecretKey": "YOUR_STRIPE_KEY",
+  "stripeWebhookSecret": "" ,
+  "admin_secret_key": "MySuperSecretAdminKey30140!@#"
+}

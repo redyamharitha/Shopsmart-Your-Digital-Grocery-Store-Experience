@@ -1,0 +1,204 @@
+/* shopsmart-frontend/src/app/components/my-orders/my-orders.component.scss */
+.my-orders-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2.2em;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 15px;
+}
+
+.order-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  padding: 20px;
+  background-color: #fcfcfc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #eee;
+}
+
+.order-header h3 {
+  margin: 0;
+  font-size: 1.4em;
+  color: #333;
+}
+
+.order-status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.9em;
+  color: white;
+  text-transform: capitalize; /* Capitalize the first letter of status */
+}
+
+/* Status specific colors */
+.status-pending { background-color: #ffc107; color: #333;} /* Warning yellow */
+.status-confirmed { background-color: #28a745; } /* Success green */
+.status-shipped { background-color: #007bff; } /* Info blue */
+.status-delivered { background-color: #6f42c1; } /* Purple */
+.status-cancelled { background-color: #dc3545; } /* Danger red */
+
+.order-date {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.order-items {
+  margin-bottom: 20px;
+}
+
+.order-items h4 {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 5px;
+}
+
+.order-item-detail {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+  padding: 8px 0;
+  background-color: #fcfcfc;
+  border-radius: 5px;
+}
+
+.item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.item-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.item-info p {
+  margin: 0;
+  font-size: 0.95em;
+  color: #444;
+}
+
+.item-subtotal {
+  font-weight: bold;
+  color: #333;
+  font-size: 1em;
+  flex-shrink: 0; /* Prevent subtotal from shrinking */
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid #ddd;
+}
+
+.order-total {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #2c3e50; /* Darker blue/grey for emphasis */
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease;
+  &:hover {
+    background-color: #c82333;
+  }
+}
+
+.no-orders-message {
+  text-align: center;
+  padding: 50px 20px;
+  border: 2px dashed #e0e0e0;
+  border-radius: 10px;
+  color: #888;
+  font-size: 1.2em;
+
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 25px;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .my-orders-container {
+    padding: 15px;
+    margin: 20px;
+  }
+  .order-item-detail {
+    flex-wrap: wrap; /* Allow items to wrap to next line */
+    text-align: left;
+  }
+  .item-image {
+    margin-right: 10px;
+  }
+  .item-info {
+    flex-basis: calc(100% - 70px); /* Adjust width to make room for image */
+  }
+  .item-subtotal {
+    width: 100%; /* Push subtotal to new line if wrapped */
+    text-align: right;
+    margin-top: 5px;
+  }
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .order-status {
+    margin-top: 10px;
+  }
+  .order-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cancel-button {
+    margin-top: 15px;
+    width: 100%;
+  }
+}

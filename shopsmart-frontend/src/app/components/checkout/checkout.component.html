@@ -1,0 +1,79 @@
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <form [formGroup]="checkoutForm" (ngSubmit)="onCheckoutSubmit()" class="checkout-form">
+
+    <div formGroupName="shippingAddress" class="form-section">
+      <h3>Shipping Information</h3>
+      <div class="form-group">
+        <label for="street">Street Address:</label>
+        <input id="street" type="text" formControlName="street">
+        <div *ngIf="checkoutForm.get('shippingAddress.street')?.invalid && checkoutForm.get('shippingAddress.street')?.touched" class="error-message">
+          Street Address is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input id="city" type="text" formControlName="city">
+        <div *ngIf="checkoutForm.get('shippingAddress.city')?.invalid && checkoutForm.get('shippingAddress.city')?.touched" class="error-message">
+          City is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="state">State:</label> <input id="state" type="text" formControlName="state">
+        <div *ngIf="checkoutForm.get('shippingAddress.state')?.invalid && checkoutForm.get('shippingAddress.state')?.touched" class="error-message">
+          State is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="zip">Zip Code:</label> <input id="zip" type="text" formControlName="zip"> <div *ngIf="checkoutForm.get('shippingAddress.zip')?.invalid && checkoutForm.get('shippingAddress.zip')?.touched" class="error-message">
+          Zip Code is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country:</label>
+        <input id="country" type="text" formControlName="country">
+        <div *ngIf="checkoutForm.get('shippingAddress.country')?.invalid && checkoutForm.get('shippingAddress.country')?.touched" class="error-message">
+          Country is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>Payment Method</h3>
+      <div class="form-group">
+        <label for="paymentMethod">Select Method:</label>
+        <select id="paymentMethod" formControlName="paymentMethod">
+          <option value="Cash on Delivery">Cash on Delivery</option>
+          </select>
+        <div *ngIf="checkoutForm.get('paymentMethod')?.invalid && checkoutForm.get('paymentMethod')?.touched" class="error-message">
+          Payment Method is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="order-summary">
+      <h3>Your Order</h3>
+      <div *ngIf="(cartItems$ | async) as items; else emptyCart">
+        <ul class="cart-items-list">
+          <li *ngFor="let item of items">
+            <span>{{ item.product.name }} x {{ item.quantity }}</span>
+            <span>{{ item.product.price * item.quantity | currency:'INR':'symbol':'1.2-2' }}</span>
+          </li>
+        </ul>
+        <div class="cart-total">
+          <strong>Total:</strong> <span>{{ (totalPrice$ | async) | currency:'INR':'symbol':'1.2-2' }}</span>
+        </div>
+      </div>
+      <ng-template #emptyCart>
+        <p>Your cart is empty.</p>
+      </ng-template>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="checkoutForm.invalid">Place Order</button>
+  </form>
+</div>

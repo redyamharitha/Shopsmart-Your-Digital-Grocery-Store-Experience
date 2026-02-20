@@ -1,0 +1,45 @@
+<div class="products-container">
+  <h2>Our Products</h2>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search products by name or description..."
+      [(ngModel)]="searchTerm"
+      (input)="onSearchTermChange($event)"
+    />
+  </div>
+
+  <div *ngIf="isLoading" class="loading-message">
+    <p>Loading products...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+    <button (click)="fetchProducts()">Try Again</button>
+  </div>
+
+  <div *ngIf="!isLoading && products.length === 0 && !errorMessage && !searchTerm" class="no-products">
+    <p>No products available at the moment. Please check back later!</p>
+  </div>
+
+  <div *ngIf="!isLoading && products.length === 0 && !errorMessage && searchTerm" class="no-results">
+    <p>No products found matching "{{ searchTerm }}".</p>
+  </div>
+
+  <div *ngIf="!isLoggedIn && !isLoading && products.length > 0" class="login-prompt-message">
+    <p>Please <a routerLink="/login">log in</a> to add products to your cart.</p>
+  </div>
+  <div class="product-grid" *ngIf="!isLoading && products.length > 0">
+    <div class="product-card" *ngFor="let product of products">
+      <img [src]="product.imageUrl || 'https://via.placeholder.com/150'" alt="{{ product.name }}">
+      <h3>{{ product.name }}</h3>
+      <p class="product-price">${{ product.price | number:'1.2-2' }}</p>
+      <p class="product-description">{{ product.description }}</p>
+      <div class="product-stock" [class.low-stock]="product.stock < 10 && product.stock > 0" [class.out-of-stock]="product.stock === 0">
+        Stock: {{ product.stock > 0 ? product.stock : 'Out of Stock' }}
+      </div>
+      <button (click)="addToCart(product)" [disabled]="!isLoggedIn || product.stock === 0">Add to Cart</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Organic Apples",
+    "description": "Fresh, crisp organic apples from local farms.",
+    "price": 2.99,
+    "category": "60d0fe4f5311236168a101e1",
+    "imageUrl": "/assets/images/apple - Copy.jpeg",
+    "stock": 100
+  },
+  {
+    "name": "Fresh Milk (1 Liter)",
+    "description": "Full cream dairy milk, pasteurized and homogenized.",
+    "price": 1.75,
+    "category": "60d0fe4f5311236168a101e2",
+    "imageUrl": "/assets/images/milk.jpeg",
+    "stock": 50
+  },
+  {
+    "name": "Whole Wheat Bread",
+    "description": "Baked fresh daily, rich in fiber.",
+    "price": 3.50,
+    "category": "60d0fe4f5311236168a101e3",
+    "imageUrl": "/assets/images/WholeWheatBread.webp",
+    "stock": 75
+  },
+  {
+    "name": "Eggs (Dozen)",
+    "description": "Farm fresh brown eggs, large size.",
+    "price": 4.25,
+    "category": "60d0fe4f5311236168a101e2",
+    "imageUrl": "/assets/images/eggs.jpg",
+    "stock": 40
+  },
+  {
+    "name": "Bananas (1 Kg)",
+    "description": "Naturally sweet and energy-rich bananas.",
+    "price": 1.50,
+    "category": "60d0fe4f5311236168a101e1",
+    "imageUrl": "/assets/images/banana.webp",
+    "stock": 60
+  }
+]

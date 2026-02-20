@@ -1,0 +1,115 @@
+/* shopsmart-frontend/src/app/components/admin-login/admin-login.component.scss */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Adjust as needed */
+  background-color: #f0f2f5;
+  font-family: 'Inter', sans-serif;
+}
+
+.login-card {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 30px;
+  color: #343a40;
+  font-size: 2.2em;
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left; /* Align labels and inputs to the left */
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #495057;
+    font-weight: 600;
+    font-size: 0.95em;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1em;
+    color: #495057;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    &:focus {
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+  }
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.85em;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.alert {
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+
+  &:hover:not(:disabled) {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+}
+
+.login-links {
+  margin-top: 25px;
+  font-size: 0.9em;
+  a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
